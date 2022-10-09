@@ -1,0 +1,14 @@
+micronaut:
+  application:
+    name: mongoClient
+
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+mongodb:
+  uri: mongodb://root:root@localhost:27017/databaseName
+  options:
+    maxConnectionIdleTime: 10000
+    readConcern: majority
