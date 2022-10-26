@@ -1,15 +1,18 @@
 package com.example.ports.repository
 
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+
 interface BaseRepository<T, S> {
 
-    fun save(entity: T): T
+    fun save(entity: T): Unit
 
-    fun findAll(): MutableList<T>
+    fun findAll(): Flux<T>
 
-    fun findById(id: S): T
+    fun findById(id: S): Mono<T>
 
-    fun update(entity: T): T
+    fun update(entity: T): Mono<T>
 
-    fun deleteById(id: S)
+    fun deleteById(id: S): Unit
 
 }

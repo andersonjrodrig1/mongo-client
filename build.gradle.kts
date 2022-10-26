@@ -9,7 +9,8 @@ plugins {
 version = "0.1"
 group = "com.example"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion=project.properties["kotlinVersion"]
+
 repositories {
     mavenCentral()
 }
@@ -25,8 +26,11 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+//    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.mongodb:micronaut-mongo-reactive")
+//    implementation("io.micronaut.data:micronaut-data-mongodb")
 
     implementation("io.micronaut.mongodb:micronaut-mongo-sync")
     runtimeOnly("ch.qos.logback:logback-classic")

@@ -8,7 +8,7 @@ netty:
       max-order: 3
 
 mongodb:
-  uri: mongodb://root:root@localhost:27017/databaseName
+  uri: mongodb://root:root@localhost:27017/example?authSource=admin&authMechanism=SCRAM-SHA-256&retryWrites=true&w=majority
   options:
     maxConnectionIdleTime: 10000
     readConcern: majority
