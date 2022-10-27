@@ -31,8 +31,12 @@ dependencies {
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.mongodb:micronaut-mongo-reactive")
 //    implementation("io.micronaut.data:micronaut-data-mongodb")
-
     implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:mongodb")
+    testImplementation("org.testcontainers:testcontainers")
+
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
