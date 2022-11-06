@@ -70,6 +70,3 @@ micronaut {
         annotations("com.example.*")
     }
 }
-
-
-

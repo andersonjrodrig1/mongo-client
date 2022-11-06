@@ -7,7 +7,7 @@ import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 
-@Controller("/book")
+@Controller("/books")
 open class BookController(
     private val bookUseCases: BookUseCases
 ) {
@@ -15,7 +15,8 @@ open class BookController(
     @Get
     open fun findAll(): MutableHttpResponse<*> = HttpResponse.ok(bookUseCases.findAll())
 
-    open fun findById(id: String) {}
+    @Get("{id}")
+    open fun findById(id: String): MutableHttpResponse<*> = HttpResponse.ok(bookUseCases.findById(id))
 
     open fun save(entity: Book) {}
 

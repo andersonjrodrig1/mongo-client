@@ -4,7 +4,7 @@ import com.mongodb.reactivestreams.client.MongoClient
 import com.mongodb.reactivestreams.client.MongoClients
 import org.junit.jupiter.api.TestInstance
 import org.testcontainers.containers.MongoDBContainer
-import org.testcontainers.containers.wait.strategy.Wait
+import org.testcontainers.containers.startupcheck.OneShotStartupCheckStrategy
 import org.testcontainers.utility.DockerImageName
 import java.time.Duration
 
@@ -19,7 +19,7 @@ class MongoDbContainerTest {
         fun start() {
             mongoDb = MongoDBContainer(
                 DockerImageName
-                    .parse("mongo:latest")
+                    .parse("mongo")
                     .asCompatibleSubstituteFor("mongo")
                 )
                 .withCommand("–auth", "–replSet", "docker-rs")
@@ -27,10 +27,10 @@ class MongoDbContainerTest {
                 .withEnv("MONGO_INITDB_ROOT_USERNAME", "root")
                 .withEnv("MONGO_INITDB_ROOT_PASSWORD", "root")
                 .withExposedPorts(27017)
-
-            mongoDb.setWaitStrategy(
-                Wait.defaultWaitStrategy()
-                    .withStartupTimeout(Duration.ofSeconds(60)))
+                .withStartupCheckStrategy(
+                    OneShotStartupCheckStrategy()
+                        .withTimeout(Duration.ofSeconds(60))
+                );
 
             mongoDb.start()
 

@@ -9,7 +9,7 @@ interface BookUseCases {
 
     fun findAll(): MutableList<Book>
 
-    fun findById(id: ObjectId): Book
+    fun findById(id: String): Book?
 
     fun update(book: Book): Book
 

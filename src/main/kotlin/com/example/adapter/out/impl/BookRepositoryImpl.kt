@@ -3,6 +3,7 @@ package com.example.adapter.out.impl
 import com.example.adapter.config.MongoDatabase
 import com.example.application.entities.Book
 import com.example.ports.repository.BookRepository
+import com.mongodb.client.model.Filters
 import jakarta.inject.Singleton
 import org.bson.types.ObjectId
 import reactor.core.publisher.Flux
@@ -29,15 +30,18 @@ class BookRepositoryImpl(
             Flux.from(find())
         }
 
-    override fun findById(id: ObjectId): Mono<Book> {
-        TODO("Not yet implemented")
-    }
+    override fun findById(id: String): Mono<Book> =
+        withCollection {
+            Mono.from(find(Filters.and(
+                Filters.eq("_id", ObjectId(id))
+            )))
+        }
 
     override fun update(entity: Book): Mono<Book> {
         TODO("Not yet implemented")
     }
 
-    override fun deleteById(id: ObjectId) {
+    override fun deleteById(id: String) {
         TODO("Not yet implemented")
     }
 
