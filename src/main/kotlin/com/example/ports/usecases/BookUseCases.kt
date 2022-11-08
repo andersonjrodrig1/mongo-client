@@ -5,7 +5,7 @@ import org.bson.types.ObjectId
 
 interface BookUseCases {
 
-    fun save(book: Book): Book
+    fun save(book: Book): Book?
 
     fun findAll(): MutableList<Book>
 

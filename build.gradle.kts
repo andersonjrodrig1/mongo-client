@@ -61,7 +61,9 @@ tasks {
         }
     }
 }
+
 graalvmNative.toolchainDetection.set(false)
+
 micronaut {
     runtime("netty")
     testRuntime("kotest")

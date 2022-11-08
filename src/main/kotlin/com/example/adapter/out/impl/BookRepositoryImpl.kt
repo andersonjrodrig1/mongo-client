@@ -18,11 +18,9 @@ class BookRepositoryImpl(
     clazz = Book::class.java
 ) {
 
-    override fun save(entity: Book): Unit =
+    override fun save(entity: Book): Mono<Book> =
         withCollection {
-            Mono.from(
-                insertOne(entity)
-            ).subscribe()
+            Mono.from(insertOne(entity)).map { entity }
         }
 
     override fun findAll(): Flux<Book> =

@@ -14,9 +14,14 @@ class BookService(
 
     private val logger = LoggerFactory.getLogger("BookServiceKt")
 
-    override fun save(book: Book): Book {
-        TODO("Not yet implemented")
-    }
+    override fun save(book: Book): Book? = runCatching {
+        bookRepository.save(book).block()
+    }.onSuccess {
+        logger.info("Salvo com sucesso. $it")
+    }.onFailure {
+        logger.error("Falha ao salvar o livro. ${it.message}")
+        throw it
+    }.getOrThrow()
 
     override fun findAll(): MutableList<Book> = runCatching {
         bookRepository.findAll()

@@ -5,7 +5,7 @@ import reactor.core.publisher.Mono
 
 interface BaseRepository<T, S> {
 
-    fun save(entity: T): Unit
+    fun save(entity: T): Mono<T>
 
     fun findAll(): Flux<T>
 
@@ -13,6 +13,6 @@ interface BaseRepository<T, S> {
 
     fun update(entity: T): Mono<T>
 
-    fun deleteById(id: S): Unit
+    fun deleteById(id: S)
 
 }
