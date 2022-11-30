@@ -35,12 +35,17 @@ class BookRepositoryImpl(
             )))
         }
 
-    override fun update(entity: Book): Mono<Book> {
-        TODO("Not yet implemented")
-    }
+    override fun update(entity: Book): Mono<Book> =
+        withCollection {
+            replaceOne(Filters.eq("_id", entity.id), entity)
+            Mono.just(entity)
+        }
 
-    override fun deleteById(id: String) {
-        TODO("Not yet implemented")
-    }
+    override fun deleteById(id: String): Unit =
+        withCollection {
+            Mono.from(deleteOne(Filters.and(
+                Filters.eq("_id", ObjectId(id))
+            ))).subscribe()
+        }
 
 }
