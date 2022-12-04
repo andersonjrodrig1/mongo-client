@@ -17,7 +17,6 @@ class BookRepositoryImpl(
     collectionName = "book",
     clazz = Book::class.java
 ) {
-
     override fun save(entity: Book): Mono<Book> =
         withCollection {
             Mono.from(insertOne(entity)).map { entity }

@@ -2,6 +2,7 @@ package com.example.ports.usecases
 
 import com.example.application.entities.Book
 import org.bson.types.ObjectId
+import java.util.*
 
 interface BookUseCases {
 
@@ -9,10 +10,10 @@ interface BookUseCases {
 
     fun findAll(): MutableList<Book>
 
-    fun findById(id: String): Book?
+    fun findById(id: String): Optional<Book>
 
-    fun update(book: Book): Book
+    fun update(book: Book): Book?
 
-    fun deleteById(id: ObjectId): Boolean
+    fun deleteById(id: String): Boolean
 
 }
